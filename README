@@ -1,5 +1,5 @@
 # primeSentinel30
 
-Prime sieving algorithm in java, using modulo 30. Range from 1 to 10^9 below 2 seconds on i5 processor. Single threaded.
+Prime sieving algorithm in java, using modulo 30. Search range from 1 to 10^9 below 2 seconds on i5 processor. Single threaded.
 
 
