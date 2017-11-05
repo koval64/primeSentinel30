@@ -26,7 +26,7 @@ public class MainApp {
 	//private static final long MAX_VALUE = 9_699_690;	/*	2,3,5,7,11,13,17,19   wheel	*/
 	//private static final long MAX_VALUE = 64_400_000_000L;
 	//private static final long MAX_VALUE = 30030;
-	private static final long MAX_VALUE = 10_000_000_000L;
+	private static final long MAX_VALUE = 1_000_000_000L;
 
 	private static void printInfo(PrimesSentinel sentinel){
 		String range = NumberFormat.getInstance().format( (MAX_VALUE/30+1) * 30 );
