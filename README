@@ -1,1 +1,3 @@
 # primeSentinel30
+
+Prime sieving algorithm in java, using modulo 30. 10^9 below 2 seconds on i5 processor. Single threaded.
