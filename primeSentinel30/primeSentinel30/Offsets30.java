@@ -4,7 +4,7 @@ public class Offsets30 {
 
 	private int[] offsets = new int[8];
 
-	/** x - number with ending 1,7,11,13,17,19,23,29
+	/** x - number ending with: 1,7,11,13,17,19,23,29
 	 *  row - unity
 	*/
 	public int[] calculateOffsets(int x, int row) {
