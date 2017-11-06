@@ -5,7 +5,7 @@ import java.text.NumberFormat;
 /** 
  * Intel(R) Core(TM) i5-7600K CPU @ 3.80GHz
  * 
- *   64_410_000_030    128.697 s	2,701,477,379 primes	- max working value
+ *   64_410_000_030    128.697 s	2,701,477,379 primes	- very close to max working value
  *   50_000_000_010     97.805 s    2,119,654,578 primes
  *   10_000_000_020     17.035 s      455,052,512 primes
  * 
@@ -30,8 +30,7 @@ public class MainApp {
 	//private static final long MAX_VALUE = 6_469_693_230L;	/* 2,3,5,7,11,13,17,19,23,29   wheel */
 	//private static final long MAX_VALUE = 9_699_690;	/*	2,3,5,7,11,13,17,19   wheel	*/
 	//private static final long MAX_VALUE = 64_400_000_000L;
-	//private static final long MAX_VALUE = 30030;
-	//private static final long MAX_VALUE = 64_410_000_000L;
+	//private static final long MAX_VALUE = 64_410_000_030L;
 	private static final long MAX_VALUE = 10_000_000_000L;
 
 	private static void printInfo(PrimesSentinel sentinel){

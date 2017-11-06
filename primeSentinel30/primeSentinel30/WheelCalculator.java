@@ -52,11 +52,10 @@ public class WheelCalculator {
 		app.getWheel(new int[] {2,3,5,7,11,13,17});
 		app.getWheel(new int[] {2,3,5,7,11,13,17,19});
 		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,27});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,27,29});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,27,29,31});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,27,29,31,37});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,27,29,31,37,41});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,27,29,31,37,41,43});
+		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,29});
+		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,29,31});
+		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,29,31,37});
+		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,29,31,37,41});
+		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,29,31,37,41,43});
 	}
 }
