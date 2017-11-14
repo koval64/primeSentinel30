@@ -60,7 +60,7 @@ public class PrimesSentinel {
 					
 					int numberValue = i*30+endNumber[j];
 //					if(numberValue <= numberSqrt) {
-						markDividersOfANumber(numberValue, j);
+						markMultiplesOfANumber(numberValue, j);
 //					}
 				}
 			}
@@ -89,7 +89,7 @@ public class PrimesSentinel {
 		return diffs;
 	}
 
-	private void markDividersOfANumber(int number, int row) {
+	private void markMultiplesOfANumber(int number, int row) {
 
 		int[] offsets = offset.calculateOffsets(number, row);
 
