@@ -7,7 +7,7 @@ public class PrimesSentinel {
 	private Offsets30 offset = new Offsets30();
 	private int[] endNumber = {1,7,11,13,17,19,23,29};
 	private final int[] wages = {1,2,4,8,16,32,64,128};
-	private final int[] columns = {7, 0, 7, 1, 7, 7, 7, 2, 7, 3};
+	private final int[] column_nr = {9,0,9,9,9,9,9,1,9,9,9,2,9,3,9,9,9,4,9,5,9,9,9,6,9,9,9,9,9,7,9};
 	private byte[] table;
 	private long sieveTime;
 
@@ -41,8 +41,8 @@ public class PrimesSentinel {
 		if(num == 3) return 0;
 		if(num == 5) return 0;
 		int row = (int) num/30;
-		int col = columns[num%30];
-		if(col<=3) {
+		int col = column_nr[num%30];
+		if(col<=8) {
 			return table[row]&wages[col];
 		}
 		return 1;
