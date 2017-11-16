@@ -31,7 +31,7 @@ public class MainApp {
 	//private static final long MAX_VALUE = 9_699_690;	/*	2,3,5,7,11,13,17,19   wheel	*/
 	//private static final long MAX_VALUE = 64_400_000_000L;
 	//private static final long MAX_VALUE = 64_410_000_030L;
-	private static final long MAX_VALUE = 10_000_000_000L;
+	private static final long MAX_VALUE = 200L;
 
 	private static void printInfo(PrimesSentinel sentinel){
 		String range = NumberFormat.getInstance().format( (MAX_VALUE/30+1) * 30 );
@@ -44,6 +44,7 @@ public class MainApp {
 
 		PrimesSentinel sentinel = new PrimesSentinel(MAX_VALUE);
 		printInfo(sentinel);
+		//sentinel.printPossiblePrimes();
 		//System.out.println(Long.MAX_VALUE);
 		//sentinel.printPossiblePrimes();
 		//sentinel.printCols(30, 500);
