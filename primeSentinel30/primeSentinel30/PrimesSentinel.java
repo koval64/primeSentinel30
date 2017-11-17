@@ -27,6 +27,7 @@ public class PrimesSentinel {
 		sieveUntil((int) Math.sqrt(maxValue));
 		sieveTime = System.currentTimeMillis() - start; // save time of sieving
 	}
+
 	/**
 	 * 
 	 * @param
@@ -54,7 +55,7 @@ public class PrimesSentinel {
 
 		for(int i=0; i<max_i; i++) {
 			
-			for(int j=0; j<8; j++) {
+			for(int j=0; j<8; j++) {				/*	bits in sieve: 0 1 2 3 4 5 6 7	*/
 
 				if( (table[i] & wages[j]) == 0) {	/*	if number is prime	*/
 					
