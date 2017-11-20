@@ -10,22 +10,26 @@ public class PrimesSentinel {
 	private final int[] column_nr = {9,0,9,9,9,9,9,1,9,9,9,2,9,3,9,9,9,4,9,5,9,9,9,6,9,9,9,9,9,7,9};
 	private byte[] table;
 	private long sieveTime;
+	private long max_value;
 
 	public PrimesSentinel(long maxValue) {
 
+		max_value = maxValue;
 		table = new byte[(int) (maxValue/30+1)];
 		table[0] = 0b00000001;   /*	mark that number one isn't prime	*/
 
-		String value = NumberFormat.getInstance().format( maxValue );
+		long start = System.currentTimeMillis();
+		sieveUntil((int) Math.sqrt(maxValue));
+		sieveTime = System.currentTimeMillis() - start; // save time of sieving
+	}
+
+	public void printSieveInfo() {
+		String value = NumberFormat.getInstance().format( max_value );
 		String length = NumberFormat.getInstance().format( table.length );
 
 		System.out.println("     value: " + value);
 		System.out.println("table size:  " + length);
 		System.out.println("size in MB: " + table.length/1024/1024);
-		
-		long start = System.currentTimeMillis();
-		sieveUntil((int) Math.sqrt(maxValue));
-		sieveTime = System.currentTimeMillis() - start; // save time of sieving
 	}
 
 	/**
@@ -37,16 +41,34 @@ public class PrimesSentinel {
 	 * 			0 - mean that this is prime
 	 * 			1 - mean that it isn't prime
 	 */
-	public int isPrime(int num) {
-		if(num == 2) return 0;
-		if(num == 3) return 0;
-		if(num == 5) return 0;
+	public int isPrime(int num) {	/*	max Integer.MAX_VALUE	*/
+		if(num == 2) return 0;	/*	prime	*/
+		if(num == 3) return 0;	/*	prime	*/
+		if(num == 5) return 0;	/*	prime	*/
 		int row = (int) num/30;
 		int col = column_nr[num%30];
 		if(col<=8) {
 			return table[row]&wages[col];
 		}
-		return 1;
+		return 1;				/*	not prime	*/
+	}
+
+	public int isPrimeLong(long num) {	/*	max Long.MAX_VALUE	*/
+		long sqrt = (long) Math.sqrt(num);
+
+		int tableVal = column_nr[(int) (num%30)];
+		if(tableVal==9) return 1;
+
+		int max_i = (int) (sqrt/30+1);
+		for(int i=0; i<max_i; i++) {
+			for(int j=0; j<8; j++) {
+				if((table[i]&wages[j])==0) {	/*	if this is prime	*/
+					long number = (long) i * 30 + endNumber[j];
+					if(num%number==0) return 1;
+				}
+			}
+		}
+		return 0;				/*	not prime	*/
 	}
 
 	private void sieveUntil(int numberSqrt) {
@@ -204,9 +226,8 @@ public class PrimesSentinel {
 		return possiblePrimes + 3;	/*	add prime numbers 2, 3 and 5	*/
 	}
 
-	public double getSieveTime() {
-		return (double) sieveTime/1000;
-	}
+	public double getSieveTime() { return (double) sieveTime/1000; }
+	public long   getMaxValue()  { return this.max_value; }
 }
 
 
