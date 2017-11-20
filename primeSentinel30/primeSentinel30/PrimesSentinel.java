@@ -57,18 +57,18 @@ public class PrimesSentinel {
 		long sqrt = (long) Math.sqrt(num);
 
 		int tableVal = column_nr[(int) (num%30)];
-		if(tableVal==9) return 1;
+		if(tableVal==9) return 1;				/*	not prime	*/
 
 		int max_i = (int) (sqrt/30+1);
 		for(int i=0; i<max_i; i++) {
 			for(int j=0; j<8; j++) {
 				if((table[i]&wages[j])==0) {	/*	if this is prime	*/
 					long number = (long) i * 30 + endNumber[j];
-					if(num%number==0) return 1;
+					if(num%number==0) return 1;	/*	not prime	*/
 				}
 			}
 		}
-		return 0;				/*	not prime	*/
+		return 0;				/*	prime	*/
 	}
 
 	private void sieveUntil(int numberSqrt) {
