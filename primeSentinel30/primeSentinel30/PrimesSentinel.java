@@ -41,7 +41,7 @@ public class PrimesSentinel {
 	 * 			0 - mean that this is prime
 	 * 			1 - mean that it isn't prime
 	 */
-	public int isPrime(int num) {	/*	max: max_value	*/
+	public int isPrime(int num) {	/*	max: this.max_value	*/
 		if(num == 2) return 0;	/*	prime	*/
 		if(num == 3) return 0;	/*	prime	*/
 		if(num == 5) return 0;	/*	prime	*/
