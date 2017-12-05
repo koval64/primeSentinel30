@@ -5,14 +5,14 @@ import java.util.Locale;
 
 public class WheelCalculator {
 
-	private long calculateModulo(int[] primes) {
+	public long calculateModulo(int[] primes) {
 		long modulo = 1;
 		for(int p : primes)
 			modulo *= p;
 		return modulo;
 	}
 
-	private long calculateWheelSize(int[] primes, long modulo) {
+	public long calculateWheelSize(int[] primes, long modulo) {
 		long wheelSize = modulo;
 		for(int p : primes)
 			wheelSize -= wheelSize/p;
@@ -41,7 +41,8 @@ public class WheelCalculator {
 	}
 
 	public static void main(String[] args) {
-		
+
+		System.out.println("Integer.MAX_VALUE: " + Integer.MAX_VALUE);
 		WheelCalculator app = new WheelCalculator();
 		app.getWheel(new int[] {2});
 		app.getWheel(new int[] {2,3});

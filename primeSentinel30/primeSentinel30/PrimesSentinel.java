@@ -1,6 +1,7 @@
 package primeSentinel30;
 
 import java.text.NumberFormat;
+import java.util.BitSet;
 
 public class PrimesSentinel {
 
@@ -9,18 +10,19 @@ public class PrimesSentinel {
 	private final int[] wages = {1,2,4,8,16,32,64,128};
 	private final int[] column_nr = {9,0,9,9,9,9,9,1,9,9,9,2,9,3,9,9,9,4,9,5,9,9,9,6,9,9,9,9,9,7,9};
 	private byte[] table;
-	private long sieveTime;
+	private long sieve_time;
 	private long max_value;
+	private long count_time=Long.MAX_VALUE;
 
 	public PrimesSentinel(long maxValue) {
 
 		max_value = maxValue;
 		table = new byte[(int) (maxValue/30+1)];
-		table[0] = 0b00000001;   /*	mark that number one isn't prime	*/
+		table[0] = 0b00000001;   /*	mark that number, one isn't prime	*/
 
 		long start = System.currentTimeMillis();
 		sieveUntil((int) Math.sqrt(maxValue));
-		sieveTime = System.currentTimeMillis() - start; // save time of sieving
+		sieve_time = System.currentTimeMillis() - start; // save time of sieving
 	}
 
 	public void printSieveInfo() {
@@ -41,12 +43,12 @@ public class PrimesSentinel {
 	 * 			0 - mean that this is prime
 	 * 			1 - mean that it isn't prime
 	 */
-	public int isPrime(int num) {	/*	max: this.max_value	*/
+	public int isPrime(long num) {	/*	max: this.max_value	*/
 		if(num == 2) return 0;	/*	prime	*/
 		if(num == 3) return 0;	/*	prime	*/
 		if(num == 5) return 0;	/*	prime	*/
-		int row = (int) num/30;
-		int col = column_nr[num%30];
+		int row = (int) (num/30);
+		int col = column_nr[ (int) (num%30) ];
 		if(col<=8) {
 			return table[row]&wages[col];
 		}
@@ -54,17 +56,20 @@ public class PrimesSentinel {
 	}
 
 	public int isPrimeLong(long num) {	/*	max Long.MAX_VALUE	*/
-		long sqrt = (long) Math.sqrt(num);
+
+		if(num < this.max_value) return isPrime(num);
 
 		int tableVal = column_nr[(int) (num%30)];
 		if(tableVal==9) return 1;				/*	not prime	*/
+
+		long sqrt = (long) Math.sqrt(num);
 
 		int max_i = (int) (sqrt/30+1);
 		for(int i=0; i<max_i; i++) {
 			for(int j=0; j<8; j++) {
 				if((table[i]&wages[j])==0) {	/*	if this is prime	*/
-					long number = (long) i * 30 + endNumber[j];
-					if(num%number==0) return 1;	/*	not prime	*/
+					long prime = (long) i * 30 + endNumber[j];
+					if(num%prime==0) return 1;	/*	not prime	*/
 				}
 			}
 		}
@@ -169,64 +174,20 @@ public class PrimesSentinel {
 
 	}
 
-	public void printExcludedNumbers() {
-
-		for(int i=0; i<table.length; i++) {
-			for(int j=0; j<8; j++) {
-				if((table[i]&wages[j])!=0) {
-					//int calculateNumber = i * 30 + endNumber[j];
-					System.out.println(i + endNumber[j]);
-				}
-			}
-		}
-	}
-
-	public void printPossiblePrimes() {
-
-		for(int i=0; i<table.length; i++) {
-			
-			System.out.format("%06d              ", i*30);
-			
-			for(int j=0; j<8; j++) {
-				
-				int number = i * 30 + endNumber[j];
-
-				if((table[i]&wages[j])==0) {
-					System.out.format( "%6d",number );
-				}
-				else {
-					System.err.format( "%6d",number );
-				}
-			}
-			System.out.println();
-		}
-	}
-
-	public void printCols(int modulo, int maxValue) {
-
-		for(int k=0; k<maxValue/modulo; k++) {
-			System.out.format("%06d              ", k*modulo);
-			for(int i=k*(modulo/30); i<k*(modulo/30)+(modulo/30); i++){
-				for(int j=0; j<8; j++) {
-					System.out.print( ((table[i]&wages[j])==0) ? "." : "O" );
-				}
-				System.out.print(" ");
-			}
-			System.out.println();
-		}
-	}
-
-	public long count() {
+	public long count() {	/*	count primes in sieve	*/
 
 		long possiblePrimes = 0;
 
+		long start = System.currentTimeMillis();
 		for(int i=0; i<table.length; i++) {
 			possiblePrimes += (8 - Integer.bitCount( table[i] & 0xff ) );
 		}
+		count_time = System.currentTimeMillis() - start;
 		return possiblePrimes + 3;	/*	add prime numbers 2, 3 and 5	*/
 	}
 
-	public double getSieveTime() { return (double) sieveTime/1000; }
+	public double getSieveTime() { return (double) sieve_time/1000; }
+	public double getCountTime() { return (double) count_time/1000; }
 	public long   getMaxValue()  { return this.max_value; }
 }
 
