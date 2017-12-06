@@ -46,7 +46,7 @@ public class WheelCalculator {
 
 		WheelCalculator app = new WheelCalculator();
 		int[] primes = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47};
-		for(int i=1; i<primes.length; i++) {
+		for(int i=1; i<=primes.length; i++) {
 			app.getWheel( Arrays.copyOfRange(primes, 0, i) );
 		}
 	}
