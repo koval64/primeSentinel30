@@ -1,6 +1,7 @@
 package primeSentinel30;
 
 import java.text.NumberFormat;
+import java.util.Arrays;
 import java.util.Locale;
 
 public class WheelCalculator {
@@ -41,23 +42,12 @@ public class WheelCalculator {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("Integer.MAX_VALUE: " + Integer.MAX_VALUE + "\n");
 
-		System.out.println("Integer.MAX_VALUE: " + Integer.MAX_VALUE);
 		WheelCalculator app = new WheelCalculator();
-		app.getWheel(new int[] {2});
-		app.getWheel(new int[] {2,3});
-		app.getWheel(new int[] {2,3,5});
-		app.getWheel(new int[] {2,3,5,7});
-		app.getWheel(new int[] {2,3,5,7,11});
-		app.getWheel(new int[] {2,3,5,7,11,13});
-		app.getWheel(new int[] {2,3,5,7,11,13,17});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,29});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,29,31});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,29,31,37});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,29,31,37,41});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,29,31,37,41,43});
-		app.getWheel(new int[] {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47});
+		int[] primes = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47};
+		for(int i=1; i<primes.length; i++) {
+			app.getWheel( Arrays.copyOfRange(primes, 0, i) );
+		}
 	}
 }
