@@ -1,7 +1,6 @@
 package primeSentinel30;
 
 import java.text.NumberFormat;
-import java.util.BitSet;
 
 public class PrimesSentinel {
 
@@ -12,7 +11,6 @@ public class PrimesSentinel {
 	private byte[] table;
 	private long sieve_time;
 	private long max_value;
-	private long count_time=Long.MAX_VALUE;
 
 	public PrimesSentinel(long maxValue) {
 
@@ -174,20 +172,39 @@ public class PrimesSentinel {
 
 	}
 
-	public long count() {	/*	count primes in sieve	*/
+	public long countRange(long start, long end) {	/*	count primes in sieve	*/
 
-		long possiblePrimes = 0;
+		long seg1 = (long) start/30;
+		long seg2 = (long) end/30;
 
-		long start = System.currentTimeMillis();
-		for(int i=0; i<table.length; i++) {
-			possiblePrimes += (8 - Integer.bitCount( table[i] & 0xff ) );
+		if(seg1 == seg2) return this.naiveCount(start, end);	/*	 range in one segment	*/
+		if((seg1+1) == seg2) return this.naiveCount(start, end);	/*	neighbouring segments	*/
+
+		/*	primes in beginning segment	*/
+		long start2 = ((seg1+1)*30)-1;
+		long count = this.naiveCount(start, start2);
+
+		/* primes in sieve	*/
+		for(long range=seg1+1; range<seg2; range++) {
+			count += (8 - Integer.bitCount( table[(int) range] & 0xff ) );
 		}
-		count_time = System.currentTimeMillis() - start;
-		return possiblePrimes + 3;	/*	add prime numbers 2, 3 and 5	*/
+
+		/*	primes in ending segment	*/
+		count += this.naiveCount( seg2*30, end);
+
+		return count;
+	}
+
+	public long naiveCount(long start, long end) {
+		long count = 0;
+		for(long val=start; val<=end; val+=1 ) {
+			if(this.isPrimeLong(val)==0)
+				count++;
+		}
+		return count;
 	}
 
 	public double getSieveTime() { return (double) sieve_time/1000; }
-	public double getCountTime() { return (double) count_time/1000; }
 	public long   getMaxValue()  { return this.max_value; }
 }
 
