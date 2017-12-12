@@ -1,5 +1,6 @@
 package primeSentinel30;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Locale;
@@ -30,9 +31,9 @@ public class WheelCalculator {
 		System.out.println("    modulo: " + withCommas(modulo) + "  ");
 		System.out.print("wheel size: " + withCommas( wheelSize ) + " ");
 		System.out.println("dropped: " + withCommas( modulo - wheelSize ));
-		float f = (float) 100/modulo;
-		System.out.print("checking: " + f * wheelSize + "% ");
-		System.out.println("dropped: " + f * (modulo - wheelSize) + "%\n");
+		float fraction = (float) 100/modulo;
+		System.out.print("checking: " + fraction * wheelSize + "% ");
+		System.out.println("dropped: " + fraction * (modulo - wheelSize) + "%\n");
 	}
 
 	public void getWheel(int[] primes) {
@@ -41,10 +42,20 @@ public class WheelCalculator {
 		printWheel(modulo, wheelSize, primes);
 	}
 
+	private void printFormatted(String message, long value) {
+		char sep = new DecimalFormat().getDecimalFormatSymbols().getGroupingSeparator();
+		String val = NumberFormat.getInstance().format( value ).replace(sep, '_');
+		System.out.println(message + val);
+	}
+
 	public static void main(String[] args) {
-		System.out.println("Integer.MAX_VALUE: " + Integer.MAX_VALUE + "\n");
 
 		WheelCalculator app = new WheelCalculator();
+
+		app.printFormatted("Integer.MAX_VALUE: ", Integer.MAX_VALUE);
+		app.printFormatted("   Long.MAX_VALUE: ", Long.MAX_VALUE);
+		System.out.println();
+
 		int[] primes = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47};
 		for(int i=1; i<=primes.length; i++) {
 			app.getWheel( Arrays.copyOfRange(primes, 0, i) );
