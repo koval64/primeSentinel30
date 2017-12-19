@@ -29,7 +29,7 @@ Sieve benchmarks
     10_000_000_020     17.035 s      455,052,512 primes
      1_000_000_020      1.333 s       50,847,536 primes
   
-  Intel(R) Core(TM) i5-7600K CPU @ 3.80GHz with OC 4.3GHz
+  Intel(R) Core(TM) i5-7600K CPU @ 4.30GHz OC
   --------------------------------------------------------
   
     64_400_000_000     89.428 s    2,701,075,683 primes
