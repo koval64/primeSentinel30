@@ -1,7 +1,7 @@
 primeSentinel30
 ===============
 
-Prime sieving algorithm in java, using modulo 30. Scans the range from 1 to 10^9  in 1.333 second on i5 processor. Single threaded.
+Prime sieving algorithm in java, using modulo 30. Scans the range from `1` to `10^9`  in `1.333` second on `i5` processor. Single threaded.
 
 2017.12.12 big update
 ---------------------
