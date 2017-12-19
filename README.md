@@ -9,8 +9,8 @@ Prime sieving algorithm in java, using modulo 30. Scans the range from 1 to 10^9
 - many cleanups
 - added terminal for easier usage
 - added primes counting function ( only in sieve for now )
-- fixed isPrimeLong function, now we can check if number is a prime from 1 to Long.MAX_VALUE ( probably 9.223.372.036.854.775.807 )
-- added benchmark for isPrimeLong function
+- fixed `isPrimeLong` function, now we can check if number is a prime from `1` to `Long.MAX_VALUE` ( probably `9.223.372.036.854.775.807` )
+- added benchmark for `isPrimeLong` function
 
 TODO
 ----
