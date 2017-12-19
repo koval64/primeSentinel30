@@ -14,7 +14,7 @@ Prime sieving algorithm in java, using modulo 30. Scans the range from 1 to 10^9
 
 TODO
 ----
-sieve benchmarks directly from terminal
+- sieve benchmarks directly from terminal
 
 
 
