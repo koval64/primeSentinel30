@@ -1,0 +1,2 @@
+Main-Class: primeSentinel30.Terminal
+
