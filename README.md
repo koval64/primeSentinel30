@@ -3,7 +3,7 @@ primeSentinel30
 
 Prime sieving algorithm in java, using modulo 30. Scans the range from `1` to `10^9`  in `1.333` second on `i5` processor. Single threaded.
 
-2017.12.12 big update
+2017.12.12 update
 ---------------------
 
 - many cleanups
@@ -11,11 +11,6 @@ Prime sieving algorithm in java, using modulo 30. Scans the range from `1` to `1
 - added primes counting function ( only in sieve for now )
 - fixed `isPrimeLong` function, now we can check if number is a prime from `1` to `Long.MAX_VALUE` ( probably 2^63-1 which is `9.223.372.036.854.775.807` )
 - added benchmark for `isPrimeLong` function
-
-TODO
-----
-- sieve benchmarks directly from terminal
-
 
 
 Sieve benchmarks
